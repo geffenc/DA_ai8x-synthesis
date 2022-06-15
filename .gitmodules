@@ -1,3 +1,4 @@
 [submodule "sdk"]
 	path = sdk
-	url = https://github.com/geffenc/DA_ai8x-synthesis.git
+	url = git@github.com:geffenc/DA_ai8x-sdk.git
+	branch = DA
