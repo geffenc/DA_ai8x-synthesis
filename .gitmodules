@@ -1,3 +1,3 @@
 [submodule "sdk"]
 	path = sdk
-	url = https://github.com/MaximIntegratedAI/MAX78000_SDK.git
+	url = https://github.com/geffenc/DA_ai8x-synthesis.git
