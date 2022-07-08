@@ -1,5 +1,6 @@
-arch: catdogclassifier_qat
-dataset: cats_and_dogs
+#arch: officeclassifier_qat
+arch: classifierbackbonenet_qat
+dataset: office
 
 layers:
 - out_offset: 0x1000 # L0: 3x128x128 --> 8x128x128
@@ -59,7 +60,7 @@ layers:
   kernel_size: 3x3
   activate: ReLU
   out_offset: 0x4000
-  processors: 0x00000000ffffffff
+  processors: 0xffffffffffffffff
 - pad: 1 # L8: 64x16x16 --> 64x8x8
   max_pool: 2
   pool_stride: 2
@@ -67,7 +68,7 @@ layers:
   kernel_size: 3x3
   activate: ReLU
   out_offset: 0x0000
-  processors: 0x00000000ffffffff
+  processors: 0xffffffffffffffff
 - pad: 1 # L9: 64x8x8 --> 64x4x4
   max_pool: 2
   pool_stride: 2
@@ -75,13 +76,18 @@ layers:
   kernel_size: 3x3
   activate: ReLU
   out_offset: 0x4000
-  processors: 0x00000000ffffffff
+  processors: 0xffffffffffffffff
 - op: mlp # L10: 64x4x4 --> 1024x1 --> 128x1
   activate: ReLU
   flatten: true
   out_offset: 0x0000
-  processors: 0x00000000ffffffff
-- op: mlp # L11: 12x1 --> 2x1
+  processors: 0xffffffffffffffff
+- op: mlp # L11: 128x1 --> 64x1
+  activate: ReLU
+  flatten: true
+  out_offset: 0x4000
+  processors: 0xffffffffffffffff
+- op: mlp # L12: 64x1 --> 5x1
   out_offset: 0x1000
   flatten: true
   output_width: 32
