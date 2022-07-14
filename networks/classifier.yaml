@@ -1,5 +1,5 @@
 #arch: officeclassifier_qat
-arch: classifierbackbonenet_qat
+arch: officeclassifier_qat
 dataset: office
 
 layers:
